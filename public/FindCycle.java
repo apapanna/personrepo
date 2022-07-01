@@ -68,9 +68,10 @@ public class FindCycle {
         }
 
         //check if it's a valid tree by verifying there's more than 1 unique root in the root array.
-        int uniqueroot = uf.root[0];
+        //uf.find(uf.root[0]) instead of just uf.root[0] to make sure stale roots are updated and used at the time of comparison
+        int uniqueroot = uf.find(uf.root[0]);
         for(int k = 0; k < uf.root.length; k++) {
-            if(uf.root[k] != uniqueroot) {
+            if(uf.find(uf.root[k]) != uniqueroot) {
                 System.out.println("Not a valid tree");
                 break;
             }
